@@ -1,7 +1,7 @@
-package com.ragnorak.seatcodetest.input.di
+package com.ragnorak.seatcodetest.persistence.di
 
 import android.content.Context
-import com.ragnorak.seatcodetest.input.data.datasource.LocalRoverMovementDataSource
+import androidx.room.Room
 import com.ragnorak.seatcodetest.persistence.dao.RoverMovementsDao
 import com.ragnorak.seatcodetest.persistence.ddbb.RoverMovementsDataBase
 import dagger.Module
@@ -13,11 +13,18 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object InputRoverMovementDataSourceModule {
+class RoverMovementsDataBaseModule {
 
-    fun provideLocalRoverMovementDataSource(
-        roverMovementsDao: RoverMovementsDao
-    ): LocalRoverMovementDataSource {
-        return LocalRoverMovementDataSource(roverMovementsDao)
+    @Provides
+    @Singleton
+    fun provideRoverMovementsDao(
+        @ApplicationContext appContext: Context
+    ): RoverMovementsDao {
+        return Room.databaseBuilder(
+            appContext,
+            RoverMovementsDataBase::class.java,
+            "rover_movements_db"
+        ).build().roverMovementsDao()
     }
+
 }

@@ -52,7 +52,11 @@ open class InputRoverDirectionViewModel @Inject constructor(
                         roverDirection = roverDirection.value,
                         movements = movement.value
                     )
-                )
+                ).onSuccess {
+                    _state.value = InputRoverMovementState.Success
+                }.onFailure {
+                    _state.value = InputRoverMovementState.Error(it.message ?: "Unknown error")
+                }
             }
         }
     }
