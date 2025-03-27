@@ -23,3 +23,4 @@ rootProject.name = "SeatCodeTest"
 include(":app")
 include(":input")
 include(":output")
+include(":core:resources")
