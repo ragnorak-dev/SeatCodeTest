@@ -12,7 +12,9 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,10 +48,13 @@ fun InputRoverDirectionScreen(viewModel: InputRoverDirectionViewModel = hiltView
                 CircularProgressIndicator()
             }
             InputRoverMovementState.Success -> {
-                Text(text = "Sent")
+                Text(text = stringResource(R.string.sent))
             }
-            InputRoverMovementState.Error -> {
-                Text(text = "Error")
+            is InputRoverMovementState.Error -> {
+                Text(
+                    text = (state.value as InputRoverMovementState.Error).message,
+                    color = Color.Red
+                )
             }
         }
     }
@@ -61,18 +66,18 @@ private fun PlateauSize(viewModel: InputRoverDirectionViewModel) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
     ) {
-        Text(text = "Plateau size")
+        Text(text = stringResource(R.string.plateau_size))
         TextField(
             modifier = Modifier.weight(1f),
             value = viewModel.plateauSizeX.value,
-            placeholder = { Text(text = "X") },
+            placeholder = { Text(text = stringResource(R.string.position_x)) },
             onValueChange = { viewModel.plateauSizeX.value = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         TextField(
             modifier = Modifier.weight(1f),
             value = viewModel.plateauSizeY.value,
-            placeholder = { Text(text = "Y") },
+            placeholder = { Text(text = stringResource(R.string.position_y)) },
             onValueChange = { viewModel.plateauSizeY.value = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
@@ -85,18 +90,18 @@ private fun RoverPosition(viewModel: InputRoverDirectionViewModel) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
     ) {
-        Text(text = "Rover Position")
+        Text(text = stringResource(R.string.rover_position))
         TextField(
             modifier = Modifier.weight(1f),
             value = viewModel.roverPositionX.value,
-            placeholder = { Text(text = "X") },
+            placeholder = { Text(text = stringResource(R.string.position_x)) },
             onValueChange = { viewModel.roverPositionX.value = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
         TextField(
             modifier = Modifier.weight(1f),
             value = viewModel.roverPositionY.value,
-            placeholder = { Text(text = "Y") },
+            placeholder = { Text(text = stringResource(R.string.position_y)) },
             onValueChange = { viewModel.roverPositionY.value = it },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
         )
@@ -109,10 +114,10 @@ private fun RoverDirection(viewModel: InputRoverDirectionViewModel) {
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
     ) {
-        Text(text = "Rover Direction")
+        Text(text = stringResource(R.string.rover_direction))
         TextField(
             value = viewModel.roverDirection.value,
-            placeholder = { Text(text = "N, S, E, W") },
+            placeholder = { Text(text = stringResource(R.string.direction_placeholder)) },
             onValueChange = { viewModel.roverDirection.value = it },
         )
     }
@@ -120,19 +125,22 @@ private fun RoverDirection(viewModel: InputRoverDirectionViewModel) {
 
 @Composable
 private fun RoverMovements(viewModel: InputRoverDirectionViewModel) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
-    ) {
-        Text(text = "Rover Movements")
-        Button(onClick = { viewModel.movement.value += "L" }) {
-            Text(text = "L")
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
+        ) {
+            Text(text = stringResource(R.string.rover_movements))
+            Button(onClick = { viewModel.movement.value += "L" }) {
+                Text(text = stringResource(R.string.left))
+            }
+            Button(onClick = { viewModel.movement.value += "R" }) {
+                Text(text = stringResource(R.string.right))
+            }
+            Button(onClick = { viewModel.movement.value += "M" }) {
+                Text(text = stringResource(R.string.move))
+            }
         }
-        Button(onClick = { viewModel.movement.value += "R" }) {
-            Text(text = "R")
-        }
-        Button(onClick = { viewModel.movement.value += "M" }) {
-            Text(text = "M")
-        }
+        Text(text = viewModel.movement.value)
     }
 }

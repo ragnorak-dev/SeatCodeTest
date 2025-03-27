@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="plateau_size">Plateau size</string>
+    <string name="position_x">X</string>
+    <string name="position_y">Y</string>
+    <string name="rover_position">Rover Position</string>
+    <string name="rover_direction">Rover Direction</string>
+    <string name="direction_placeholder">N, S, E, W</string>
+    <string name="rover_movements">Rover Movements</string>
+    <string name="left">L</string>
+    <string name="right">R</string>
+    <string name="move">M</string>
+    <string name="send">Send</string>
+    <string name="sent">Sent</string>
+</resources>
