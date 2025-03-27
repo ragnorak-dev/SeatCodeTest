@@ -4,5 +4,5 @@ import com.ragnorak.seatcodetest.input.domain.model.RoverMovementModel
 
 interface InputRoverMovementRepository {
 
-    suspend fun sendMovement(movement: RoverMovementModel)
+    suspend fun sendMovement(movement: RoverMovementModel): Result<Boolean>
 }

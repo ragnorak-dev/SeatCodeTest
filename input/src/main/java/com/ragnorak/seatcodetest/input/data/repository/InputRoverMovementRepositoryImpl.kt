@@ -7,7 +7,6 @@ import com.ragnorak.seatcodetest.input.domain.model.RoverMovementModel
 import javax.inject.Inject
 
 class InputRoverMovementRepositoryImpl @Inject constructor (private val localRoverMovementDataSource: LocalRoverMovementDataSource) : InputRoverMovementRepository {
-    override suspend fun sendMovement(movement: RoverMovementModel) {
+    override suspend fun sendMovement(movement: RoverMovementModel): Result<Boolean> =
         localRoverMovementDataSource.sendMovement(movement.toEntity())
-    }
 }
