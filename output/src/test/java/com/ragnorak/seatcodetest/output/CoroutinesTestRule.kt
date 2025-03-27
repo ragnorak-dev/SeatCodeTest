@@ -1,4 +1,4 @@
-package com.ragnorak.seatcodetest
+package com.ragnorak.seatcodetest.output
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

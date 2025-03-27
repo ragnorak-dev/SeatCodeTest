@@ -17,6 +17,7 @@ uiTooling = "1.7.8"
 room = "2.6.1"
 mockk = "1.13.17"
 kotlin_coroutines_test = "1.10.1"
+turbine = "1.2.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -46,6 +47,7 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 mockk = {module = "io.mockk:mockk", version.ref = "mockk" }
 testing-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin_coroutines_test"}
+testing-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine"}
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

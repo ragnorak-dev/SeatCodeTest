@@ -1,6 +1,6 @@
 package com.ragnorak.seatcodetest.input.data.repository
 
-import com.ragnorak.seatcodetest.CoroutinesTestRule
+import com.ragnorak.seatcodetest.input.CoroutinesTestRule
 import com.ragnorak.seatcodetest.input.data.datasource.LocalRoverMovementDataSource
 import com.ragnorak.seatcodetest.input.data.mapper.toEntity
 import com.ragnorak.seatcodetest.input.domain.model.Coordinates
