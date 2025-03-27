@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ragnorak.seatcodetest.input.ui.InputRoverDirectionScreen
+import com.ragnorak.seatcodetest.output.ui.RoverCoorReceiverScreen
 import com.ragnorak.seatcodetest.ui.theme.SeatCodeTestTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Column(modifier = Modifier.padding(innerPadding)) {
                         InputRoverDirectionScreen()
+                        RoverCoorReceiverScreen()
                     }
                 }
             }
