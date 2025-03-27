@@ -3,7 +3,7 @@ package com.ragnorak.seatcodetest.input.ui
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ragnorak.seatcodetest.input.domain.InputRoverMovementRepository
+import com.ragnorak.seatcodetest.input.domain.repository.InputRoverMovementRepository
 import com.ragnorak.seatcodetest.input.domain.model.Coordinates
 import com.ragnorak.seatcodetest.input.domain.model.RoverMovementModel
 import dagger.hilt.android.lifecycle.HiltViewModel

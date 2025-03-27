@@ -1,7 +1,7 @@
 package com.ragnorak.seatcodetest.input.di
 
 import com.ragnorak.seatcodetest.input.data.repository.InputRoverMovementRepositoryImpl
-import com.ragnorak.seatcodetest.input.domain.InputRoverMovementRepository
+import com.ragnorak.seatcodetest.input.domain.repository.InputRoverMovementRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

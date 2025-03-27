@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.ragnorak.seatcodetest.persistence.RoverMovementEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RoverMovementsDao {
@@ -13,7 +14,7 @@ interface RoverMovementsDao {
     suspend fun insertRoverMovement(roverMovement: RoverMovementEntity): Long
 
     @Query("SELECT * FROM RoverMovementEntity")
-    suspend fun getRoverMovements(): List<RoverMovementEntity>
+    fun getRoverMovements(): Flow<List<RoverMovementEntity>>
 
     @Delete
     suspend fun deleteRoverMovement(roverMovement: RoverMovementEntity)
