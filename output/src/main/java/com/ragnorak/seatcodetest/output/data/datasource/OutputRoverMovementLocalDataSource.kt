@@ -9,6 +9,6 @@ class OutputRoverMovementLocalDataSource @Inject constructor(
     private val roverMovementDao: RoverMovementsDao
 ) {
 
-    suspend fun receiveMovement(): Flow<List<RoverMovementEntity>> =
+    fun receiveMovement(): Flow<List<RoverMovementEntity>> =
         roverMovementDao.getRoverMovements()
 }

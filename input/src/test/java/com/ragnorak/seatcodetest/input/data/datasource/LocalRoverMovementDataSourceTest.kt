@@ -1,6 +1,6 @@
 package com.ragnorak.seatcodetest.input.data.datasource
 
-import com.ragnorak.seatcodetest.CoroutinesTestRule
+import com.ragnorak.seatcodetest.input.CoroutinesTestRule
 import com.ragnorak.seatcodetest.input.exceptions.SendMovementException
 import com.ragnorak.seatcodetest.persistence.CoordinatesEntity
 import com.ragnorak.seatcodetest.persistence.RoverMovementEntity

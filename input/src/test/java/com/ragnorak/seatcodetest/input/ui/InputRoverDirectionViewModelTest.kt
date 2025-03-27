@@ -1,6 +1,6 @@
 package com.ragnorak.seatcodetest.input.ui
 
-import com.ragnorak.seatcodetest.CoroutinesTestRule
+import com.ragnorak.seatcodetest.input.CoroutinesTestRule
 import com.ragnorak.seatcodetest.input.domain.model.Coordinates
 import com.ragnorak.seatcodetest.input.domain.model.RoverMovementModel
 import com.ragnorak.seatcodetest.input.domain.repository.InputRoverMovementRepository

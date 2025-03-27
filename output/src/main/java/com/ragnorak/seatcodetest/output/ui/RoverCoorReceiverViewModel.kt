@@ -10,9 +10,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RoverCoorReceiverViewModel @Inject constructor(private val getRoverMovementUseCase: OutputRoverMovementUseCase) : ViewModel() {
+class RoverCoorReceiverViewModel @Inject constructor(
+    private val getRoverMovementUseCase: OutputRoverMovementUseCase
+) : ViewModel() {
 
-    private val _state: MutableStateFlow<RoverCoorReceiverState> = MutableStateFlow(RoverCoorReceiverState.Idle)
+    private val _state: MutableStateFlow<RoverCoorReceiverState> =
+        MutableStateFlow(RoverCoorReceiverState.Idle)
     val state = _state.asStateFlow()
 
     fun onIntent(intent: RoverCoorReceiverIntent) {
@@ -23,10 +26,15 @@ class RoverCoorReceiverViewModel @Inject constructor(private val getRoverMovemen
 
     private fun receiveMovement() {
         viewModelScope.launch {
-            getRoverMovementUseCase().collect { movementList ->
+            try {
+                getRoverMovementUseCase().collect { movementList ->
 
-                _state.value = RoverCoorReceiverState.Success(movementList)
+                    _state.value = RoverCoorReceiverState.Success(movementList)
+                }
+            } catch (exception: Exception) {
+                _state.value = RoverCoorReceiverState.Error(exception.message ?: "Unknown error")
             }
+
         }
     }
 
