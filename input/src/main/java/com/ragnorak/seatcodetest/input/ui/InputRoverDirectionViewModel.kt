@@ -36,20 +36,54 @@ open class InputRoverDirectionViewModel @Inject constructor(
 
     private fun sendMovement() {
         viewModelScope.launch {
-            repository.sendMovement(
-                movement = RoverMovementModel(
-                    topRightCorner = Coordinates(
-                        x = plateauSizeX.value.toInt(),
-                        y = plateauSizeY.value.toInt()
-                    ),
-                    roverPosition = Coordinates(
-                        x = roverPositionX.value.toInt(),
-                        y = roverPositionY.value.toInt()
-                    ),
-                    roverDirection = roverDirection.value,
-                    movements = movement.value
+            _state.value = InputRoverMovementState.Loading
+
+            if (validateMovement()) {
+                repository.sendMovement(
+                    movement = RoverMovementModel(
+                        topRightCorner = Coordinates(
+                            x = plateauSizeX.value.toInt(),
+                            y = plateauSizeY.value.toInt()
+                        ),
+                        roverPosition = Coordinates(
+                            x = roverPositionX.value.toInt(),
+                            y = roverPositionY.value.toInt()
+                        ),
+                        roverDirection = roverDirection.value,
+                        movements = movement.value
+                    )
                 )
-            )
+            }
         }
     }
-}
+
+    private fun validateMovement(): Boolean {
+        if (movement.value.isEmpty() ||
+            plateauSizeX.value.isEmpty() ||
+            plateauSizeY.value.isEmpty() ||
+            roverPositionX.value.isEmpty() ||
+            roverPositionY.value.isEmpty() ||
+            roverDirection.value.isEmpty()
+        ) {
+            _state.value = InputRoverMovementState.Error("Please fill all fields")
+            return false
+        }
+
+        if (plateauSizeX.value.toInt() <= 0 || plateauSizeY.value.toInt() <= 0) {
+            _state.value = InputRoverMovementState.Error("Plateau size must be greater than 0")
+            return false
+        }
+
+        if (roverPositionX.value.toInt() < 0 || roverPositionX.value.toInt() > plateauSizeX.value.toInt() ||
+            roverPositionY.value.toInt() < 0 || roverPositionY.value.toInt() > plateauSizeY.value.toInt()) {
+            _state.value = InputRoverMovementState.Error("Rover position is out of plateau bounds")
+            return false
+        }
+
+        if (roverDirection.value !in listOf("N", "S", "E", "W")) {
+            _state.value = InputRoverMovementState.Error("Invalid rover direction")
+            return false
+        }
+            return true
+        }
+    }
