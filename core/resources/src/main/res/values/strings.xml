@@ -12,4 +12,8 @@
     <string name="move">M</string>
     <string name="send">Send</string>
     <string name="sent">Sent</string>
+
+    <string name="current_position">Current Position</string>
+
+
 </resources>
