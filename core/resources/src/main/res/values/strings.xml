@@ -6,10 +6,10 @@
     <string name="rover_position">Rover Position</string>
     <string name="rover_direction">Rover Direction</string>
     <string name="direction_placeholder">N, S, E, W</string>
-    <string name="rover_movements">Rover Movements</string>
-    <string name="left">L</string>
-    <string name="right">R</string>
-    <string name="move">M</string>
+    <string name="rover_movements">Rover\nMovements</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="move">Move</string>
     <string name="send">Send</string>
     <string name="sent">Sent</string>
 
