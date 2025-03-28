@@ -60,4 +60,5 @@ Dado que en el enunciado del ejercicio no se hacía mención a servicios REST, o
 - **Compose UI Testing**
 - **GitHub Actions**
 
+![Captura de pantalla 2025-03-28 a las 11 55 16](https://github.com/user-attachments/assets/430f4254-d8d1-4e89-84cb-fbd0e133faf2)
 
