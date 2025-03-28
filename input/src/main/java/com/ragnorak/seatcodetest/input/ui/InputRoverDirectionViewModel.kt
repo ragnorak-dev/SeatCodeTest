@@ -6,6 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.ragnorak.seatcodetest.input.domain.repository.InputRoverMovementRepository
 import com.ragnorak.seatcodetest.input.domain.model.Coordinates
 import com.ragnorak.seatcodetest.input.domain.model.RoverMovementModel
+import com.ragnorak.seatcodetest.resources.EAST
+import com.ragnorak.seatcodetest.resources.NORTH
+import com.ragnorak.seatcodetest.resources.SOUTH
+import com.ragnorak.seatcodetest.resources.WEST
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -84,7 +88,7 @@ open class InputRoverDirectionViewModel @Inject constructor(
             return false
         }
 
-        if (roverDirection.value !in listOf("N", "S", "E", "W")) {
+        if (roverDirection.value !in listOf(NORTH, SOUTH, EAST, WEST)) {
             _state.value = InputRoverMovementState.Error("Invalid rover direction")
             return false
         }

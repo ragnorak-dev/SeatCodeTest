@@ -18,7 +18,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ragnorak.seatcodetest.resources.LEFT
+import com.ragnorak.seatcodetest.resources.MOVE
 import com.ragnorak.seatcodetest.resources.R
+import com.ragnorak.seatcodetest.resources.RIGHT
 
 
 @Composable
@@ -38,23 +41,34 @@ fun InputRoverDirectionScreen(viewModel: InputRoverDirectionViewModel = hiltView
         RoverDirection(viewModel)
 
         RoverMovements(viewModel)
-        Button(onClick = { viewModel.onIntent(InputRoverMovementIntent.SendMovement) }) {
-            Text(text = "Send")
-        }
 
-        when (state.value) {
-            InputRoverMovementState.Idle -> {}
-            InputRoverMovementState.Loading -> {
-                CircularProgressIndicator()
+
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
+        ) {
+            Button(onClick = { viewModel.onIntent(InputRoverMovementIntent.SendMovement) }) {
+                Text(text = "Send")
             }
-            InputRoverMovementState.Success -> {
-                Text(text = stringResource(R.string.sent))
-            }
-            is InputRoverMovementState.Error -> {
-                Text(
-                    text = (state.value as InputRoverMovementState.Error).message,
-                    color = Color.Red
-                )
+
+            when (state.value) {
+                InputRoverMovementState.Idle -> {}
+                InputRoverMovementState.Loading -> {
+                    CircularProgressIndicator()
+                }
+
+                InputRoverMovementState.Success -> {
+                    Text(
+                        text = stringResource(R.string.sent),
+                        color = Color.Green)
+                }
+
+                is InputRoverMovementState.Error -> {
+                    Text(
+                        text = (state.value as InputRoverMovementState.Error).message,
+                        color = Color.Red
+                    )
+                }
             }
         }
     }
@@ -131,13 +145,13 @@ private fun RoverMovements(viewModel: InputRoverDirectionViewModel) {
             horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.horizontal_spacing))
         ) {
             Text(text = stringResource(R.string.rover_movements))
-            Button(onClick = { viewModel.movement.value += "L" }) {
+            Button(onClick = { viewModel.movement.value += LEFT }) {
                 Text(text = stringResource(R.string.left))
             }
-            Button(onClick = { viewModel.movement.value += "R" }) {
+            Button(onClick = { viewModel.movement.value += RIGHT }) {
                 Text(text = stringResource(R.string.right))
             }
-            Button(onClick = { viewModel.movement.value += "M" }) {
+            Button(onClick = { viewModel.movement.value += MOVE }) {
                 Text(text = stringResource(R.string.move))
             }
         }
